@@ -1,31 +1,69 @@
 package:
   name: protobuf
-  version: !!str 3.0.0a3
+  version: "3.0.0b2"
 
 source:
-  fn: protobuf-3.0.0a3.tar.gz
-  url: https://pypi.python.org/packages/source/p/protobuf/protobuf-3.0.0a3.tar.gz
-  md5: 6674fa7452ebf066b767075db96a7ee0
+  fn: protobuf-3.0.0b2.tar.gz
+  url: https://pypi.python.org/packages/21/e4/b27b31f5c8a650af6c9bb4f3626d411f855a5668d334d4c7419da58c0d9f/protobuf-3.0.0b2.tar.gz
+  md5: f0d3bd2394345a9af4a277cd0302ae83
+#  patches:
+   # List any patch files here
+   # - fix.patch
 
 build:
-  number: 1
+  # noarch_python: True
   preserve_egg_dir: True
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - protobuf = protobuf:main
+    #
+    # Would create an entry point called protobuf that calls protobuf.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
 
 requirements:
   build:
     - python
+    - six >=1.9
     - setuptools
 
   run:
     - python
+    - six >=1.9
     - setuptools
 
 test:
   # Python imports
   imports:
+    - google
     - google.protobuf
+    - google.protobuf.compiler
+    - google.protobuf.internal
+    - google.protobuf.pyext
+    - google.protobuf.util
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
 
 about:
-  home: http://code.google.com/p/protobuf/
+  home: https://developers.google.com/protocol-buffers/
   license: New BSD License
   summary: 'Protocol Buffers'
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
