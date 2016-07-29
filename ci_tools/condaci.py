@@ -292,10 +292,12 @@ def conda_build_package_win(mc, path):
     os.environ['PYTHON_VERSION'] = PYTHON_VERSION
     print('PYTHON_ARCH={} PYTHON_VERSION={}'.format(os.environ['PYTHON_ARCH'],
                                                     os.environ['PYTHON_VERSION']))
+    execute(['cmd', 'python', '-q', path, '--py={}'.format(PYTHON_VERSION_NO_DOT])
+    '''
     execute(['cmd', '/E:ON', '/V:ON', '/C', MAGIC_WIN_SCRIPT_PATH,
              conda(mc), 'build', '-q', path,
              '--py={}'.format(PYTHON_VERSION_NO_DOT)])
-
+    '''
 
 def windows_setup_compiler():
     arch = host_arch()
