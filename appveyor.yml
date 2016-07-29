@@ -5,14 +5,14 @@ environment:
   CMD_IN_ENV: "cmd /E:ON /V:ON /C obvci_appveyor_python_build_env.cmd"
   BINSTAR_USER: jlaura
 
-matrix:
-   - PYTHON_VERSION: 3.4
-     TARGET_ARCH: "x64"
-     CONDA_INSTALL_LOCN: "C:\\Miniconda3-x64"
+  matrix:
+     - PYTHON_VERSION: 3.4
+       TARGET_ARCH: "x64"
+       CONDA_INSTALL_LOCN: "C:\\Miniconda3-x64"
 
-   - PYTHON_VERSION: 2.7
-     TARGET_ARCH: "x64"
-     CONDA_INSTALL_LOCN: "C:\\Miniconda-x64"
+     - PYTHON_VERSION: 2.7
+       TARGET_ARCH: "x64"
+       CONDA_INSTALL_LOCN: "C:\\Miniconda-x64"
 
 platform:
    - x64
