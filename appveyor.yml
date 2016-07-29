@@ -1,22 +1,22 @@
 environment:
+  # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
+  # /E:ON and /V:ON options are not enabled in the batch script interpreter
+  # See: http://stackoverflow.com/a/13751649/163740
+  CMD_IN_ENV: "cmd /E:ON /V:ON /C obvci_appveyor_python_build_env.cmd"
+  BINSTAR_USER: jlaura
 
-  global:
-    # SDK v7.0 MSVC Express 2008's SetEnv.cmd script will fail if the
-    # /E:ON and /V:ON options are not enabled in the batch script intepreter
-    # See: http://stackoverflow.com/a/13751649/163740
-    CMD_IN_ENV: "cmd /E:ON /V:ON /C .\\appveyor\\run_with_env.cmd"
-    BINSTAR_USER: jlaura
-
-  PYTHON_VERSION: 3.4
+matrix:
+   - PYTHON_VERSION: 3.4
+   - TARGET_ARCH: "x64"
+   - CONDA_INSTALL_LOCN: "C:\\Miniconda3-x64"
    
 platform:
    - x64
 
 install:
-   - cmd: set PATH=C:\Miniconda3;C:\Miniconda3\Scripts;%PATH%
+   - cmd: set "PATH=%CONDA_INSTALL_LOCN%\\Scripts;%CONDA_INSTALL_LOCN%\\Library\\bin;%PATH%"
    - cmd: conda config --set always_yes yes --set changeps1 no
-   - cmd: conda update -q conda
-
+   - cmd: conda update --yes --quiet conda
    # Useful for debugging any issues with conda
    - cmd: conda info -a
 
@@ -28,6 +28,6 @@ install:
 
 build: off
 
-after_test:
+deploy_script:
    # After test success, package and upload to Anaconda
-   - "%CMD_IN_ENV% python ci_tools/condaci.py build conda/"
+   - 'python ci_tools/condaci.py build .\conda'
