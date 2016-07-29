@@ -728,10 +728,12 @@ def build_cmd(args):
     mc = miniconda_dir()
     conda_meta = args.meta_yaml_dir
 
+    """
     if host_platform() == 'Windows':
         print('downloading magical Windows SDK configuration'
               ' script to {}'.format(MAGIC_WIN_SCRIPT_PATH))
         download_file(MAGIC_WIN_SCRIPT_URL, MAGIC_WIN_SCRIPT_PATH)
+    """
 
     build_conda_package(mc, conda_meta, binstar_user=BINSTAR_USER)
     print('successfully built conda package, proceeding to upload')
