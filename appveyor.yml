@@ -9,7 +9,11 @@ matrix:
    - PYTHON_VERSION: 3.4
      TARGET_ARCH: "x64"
      CONDA_INSTALL_LOCN: "C:\\Miniconda3-x64"
-   
+
+   - PYTHON_VERSION: 2.7
+     TARGET_ARCH: "x64"
+     CONDA_INSTALL_LOCN: "C:\\Miniconda-x64
+
 platform:
    - x64
 
