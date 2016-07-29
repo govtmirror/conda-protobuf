@@ -30,4 +30,4 @@ build: off
 
 after_test:
    # After test success, package and upload to Anaconda
-   - "%CMD_IN_ENV python ci_tools/condaci.py build conda/"
+   - "%CMD_IN_ENV% python ci_tools/condaci.py build conda/"
