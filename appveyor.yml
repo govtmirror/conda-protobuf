@@ -1,0 +1,26 @@
+environment:
+   BINSTAR_USER: jlaura
+   PYTHON_VERSION: 3.4
+   
+platform:
+   - x64
+
+install:
+   - cmd: set PATH=C:\Miniconda3;C:\Miniconda3\Scripts;%PATH%
+   - cmd: conda config --set always_yes yes --set changeps1 no
+   - cmd: conda update -q conda
+
+   # Useful for debugging any issues with conda
+   - cmd: conda info -a
+
+   # Install not using env because build needs to be in root env
+   - cmd: conda config --add channels jlaura
+
+   # Development installation
+   - cmd: conda install anaconda-client
+
+build: off
+
+after_test:
+   # After test success, package and upload to Anaconda
+   - cmd: python ci_tools/condaci.py build ./conda
